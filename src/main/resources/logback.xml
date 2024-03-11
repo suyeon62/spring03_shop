@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" debug="true">  <!-- debug="true" -->
+	<timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" />
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- 로그 메시지 형식 -->
+			<pattern>%green(%d{HH:mm:ss.SSS}) [%thread] %-5level- %logger{36} - %red(%msg) %n
+			</pattern>
+		</encoder>
+		<!--<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>-->
+	</appender>
+
+
+	<!-- <logger name="패키지명" level="level명" /> -->
+	<!-- TRACE - DEBUG - INFO - WARN - ERROR -->
+	<!-- additivity은 생략하면 additivity="true" 설정되여 있다. 정의된 Appender은 root에 설정된 
+		appender가 적용된다. -->
+
+
+	<root level="debug">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

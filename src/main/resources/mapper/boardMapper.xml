@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.shop.board.repository.BoardRepository">
+  <select id="count" resultType="int">
+      SELECT count(*) FROM board     
+  </select>
+  
+  <select id="list" resultType="BoardDTO" parameterType="PageDTO">
+  	SELECT * FROM board
+  </select>
+  
+  <select id="refPlus" resultType="int">
+	  SELECT max(num)+1 FROM board
+  </select>
+  
+  <insert id="save" parameterType="BoardDTO">
+	  INSERT INTO board 
+	  (subject, reg_date, readcount, ref, re_step, re_level, content, ip, upload, memberEmail)
+	  VALUES(#{subject}, NOW(), 0, #{ref}, 0, 0, #{content}, #{ip}, #{upload}, #{memberEmail})
+  </insert>
+</mapper>
