@@ -32,10 +32,10 @@ public class PageDTO {
 		  this.currentPage = totalPage;
 
 		// 시작레코드
-		startRow = (this.currentPage - 1) * blockCount + 1;
+		startRow = (this.currentPage - 1) * blockCount;
 
 		// 끝레코드
-		endRow = startRow + blockCount - 1;
+		endRow = blockCount;
 
 	
 

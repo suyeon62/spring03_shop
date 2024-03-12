@@ -12,5 +12,4 @@ public interface BoardService {
 	public BoardDTO contentProcess(int num);
 	public void updateProcess(BoardDTO dto, String urlpath);
 	public void deleteProcess(int num, String urlpath);
-	public String fileSelectprocess(int num);
 }

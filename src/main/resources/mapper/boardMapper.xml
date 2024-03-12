@@ -9,16 +9,57 @@
   </select>
   
   <select id="list" resultType="BoardDTO" parameterType="PageDTO">
-  	SELECT * FROM board
+	  SELECT b.*
+	  FROM board b
+	  ORDER BY b.ref DESC, b.re_step ASC
+	  LIMIT 0, 5
   </select>
   
   <select id="refPlus" resultType="int">
 	  SELECT max(num)+1 FROM board
   </select>
   
+  <update id="reStepCount" parameterType="BoardDTO">
+	  UPDATE board
+	  SET re_step = re_step + 1
+	  WHERE ref=#{ref} AND re_step>#{re_step}
+  </update>
+  
   <insert id="save" parameterType="BoardDTO">
 	  INSERT INTO board 
 	  (subject, reg_date, readcount, ref, re_step, re_level, content, ip, upload, memberEmail)
-	  VALUES(#{subject}, NOW(), 0, #{ref}, 0, 0, #{content}, #{ip}, #{upload}, #{memberEmail})
+	  VALUES(#{subject}, NOW(), 0, #{ref}, #{re_step}, #{re_level}, #{content}, #{ip}, #{upload}, #{memberEmail})
   </insert>
+  
+  <update id="readCount" parameterType="int">
+	  UPDATE board
+	  SET readCount=readCount+1
+	  WHERE num=#{num}
+  </update>
+  
+  <select id="content" parameterType="int" resultType="BoardDTO">
+	  SELECT * FROM board
+	  WHERE num=#{num}
+  </select>
+  
+  <update id="update" parameterType="BoardDTO">
+	  UPDATE board
+	  SET subject=#{subject}, content=#{content}
+	  <if test="upload!=null">
+		  ,upload=#{upload}
+	  </if>
+	  WHERE num=#{num}
+  </update>
+  
+  <select id="getFile" parameterType="int">
+	  SELECT upload
+	  FROM board
+	  WHERE num=#{num}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+	  DELETE FROM board
+	  WHERE num=#{num}
+  </delete>
+  
 </mapper>
