@@ -10,7 +10,7 @@ CREATE TABLE   members(
 -- MYSQL ===================================================================================
 CREATE TABLE members (
   memberEmail VARCHAR(50),
-  memberPass VARCHAR(30),
+  memberPass VARCHAR(100),
   memberName VARCHAR(30),
   memberPhone CHAR(11),
   memberType INT,

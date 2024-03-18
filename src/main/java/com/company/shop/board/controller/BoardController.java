@@ -15,6 +15,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 
-//@CrossOrigin("*")
+@CrossOrigin("*")
 @Slf4j
 @RestController
 public class BoardController {
@@ -60,7 +61,11 @@ public class BoardController {
 		log.info("totalRecord:{}",totalRecord);
 		
 		if(totalRecord>=1) {
+			this.currentPage=currentPage;
+			this.pdto=new PageDTO(this.currentPage,totalRecord);
+			
 			map.put("boardList", boardService.listProcess(pdto));
+			map.put("pv", this.pdto);
 		}
 		
 		log.info("boardList{}", map.get("boardList"));

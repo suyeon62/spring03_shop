@@ -12,7 +12,7 @@
 	  SELECT b.*
 	  FROM board b
 	  ORDER BY b.ref DESC, b.re_step ASC
-	  LIMIT 0, 5
+	  LIMIT #{startRow}, #{blockCount}
   </select>
   
   <select id="refPlus" resultType="int">

@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.example.shop.members.dao.MembersDAO">
+ <mapper namespace="com.company.shop.members.repository.MembersRepository">
  
     <!-- 회원가입 -->
     <insert id="insertMember" parameterType="MembersDTO">
