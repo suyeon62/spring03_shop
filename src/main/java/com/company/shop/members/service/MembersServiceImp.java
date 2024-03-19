@@ -31,8 +31,7 @@ public class MembersServiceImp implements MembersService{
 
 	@Override
 	public MembersDTO updateMemberProcess(String memberEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		return membersRepository.selectByEmail(memberEmail);
 	}
 
 	@Override

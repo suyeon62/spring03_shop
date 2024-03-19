@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +40,12 @@ public class MembersController {
 		membersDTO.setMemberPass(encodePassword.encode(membersDTO.getMemberPass()));
 		AuthInfo authInfo=membersService.addMemberProcess(membersDTO);
 		return ResponseEntity.ok(authInfo);
+	}
+	
+	//회원정보 가져오기
+	@GetMapping("/member/editinfo/{memberEmail}")
+	public ResponseEntity<MembersDTO> getMember(@PathVariable("memberEmail") String memberEmail){
+		return ResponseEntity.ok(membersService.updateMemberProcess(memberEmail));
 	}
 	
 	//회원정보 수정
